@@ -1,0 +1,132 @@
+name: CI/CD Workflow
+
+  # Workflow triggers
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+  # Environment Variables
+env:
+  PACKAGE_REGISTRY_TO_USE: nico8034
+  DOCKER_IMAGE_NAME: lowercase-image-name
+  PROJECT_NAME: ProjectName
+  GROUP_NUMBER: GroupNumber #I.e  Group02
+
+jobs:
+  # Create artifact of repository source code to use for consistensy accross all jobs
+  clone-repository:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.0.0
+      - name: Upload Repository artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: repository-artifacts
+          path: .
+
+  # Perform linting and/or other static code analysis
+  code-analysis:
+    runs-on: ubuntu-latest
+    needs: clone-repository
+    permissions:
+      contents: read 
+    # Allow continuation of pipeline if linting fails
+    continue-on-error: true
+    steps:
+      - name: Download repository artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: repository-artifacts
+          path: .
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y 
+          echo "install your-linting-dependencies"
+      - name: Run Linter / Other Code Analysis tool
+        run: echo "running linter"
+  
+  # Job for compiling applicaitons and uploading as an artifact
+  build-application:
+    runs-on: ubuntu-latest
+    needs: clone-repository
+    steps:
+      - name: Download repository artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: repository-artifacts
+          path: .
+      # Your logic for building the applicaiton, language dependent
+      - name: Build application
+        run:  echo "build app"
+      # Upload compiled artifact
+      - name: Upload Build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifact
+          path: ./src # Replace with path to your compiled artifact
+  
+  # Job for testing the application i.e 
+  test-application:
+    runs-on: ubuntu-latest
+    needs: [build-application,code-analysis]
+    # Allow pipeline to continue on error
+    continue-on-error: true
+    steps:
+      # Download build artifact and use for applicaiton tests
+      - name: Download build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifact
+          path: ./build
+      - name: Test application
+        run: echo "test"
+
+  build-push-docker-image:
+    runs-on: ubuntu-latest
+    needs: [test-application]
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - name: Download repository artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: repository-artifacts
+          path: .
+      - name: Login to GitHub Package Registry
+        uses: docker/login-action@v2
+        with:
+          # Authenticate with GitHub Container Registry, could be changed to use DockerHub
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      # Transform github.actor to lowercase
+      - name: Transform username to lowercase
+        run: echo "OWNER_LOWER=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+      # Building and pushing application image go to: GitHub -> Profile -> Packages 
+      - name: Build & Push image
+        uses: docker/build-push-action@v3
+        with:
+          context: . #Path to your dockerfile
+          push: true
+          tags: ghcr.io/${{ env.OWNER_LOWER }}/${{ env.DOCKER_IMAGE_NAME }}:1.0-${{ github.sha }},ghcr.io/${{ env.OWNER_LOWER }}/${{ env.DOCKER_IMAGE_NAME }}:latest
+
+  # Job for deploying the application, could be the logic for deploying to your VM  
+  deploy-application:
+    runs-on: ubuntu-latest
+    needs: [build-push-docker-image]
+    continue-on-error: true
+    steps:
+      - name: Logic for deploying application
+        run: echo "deploy app"

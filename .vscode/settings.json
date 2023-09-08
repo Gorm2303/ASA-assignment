@@ -1,0 +1,20 @@
+{
+  "files.associations": {
+    "*.tex": "latex"
+  },
+  "files.autoSave": "afterDelay",
+  "editor.formatOnSave": true,
+  "[latex]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true
+    }
+  },
+  "triggerTaskOnSave.tasks": {
+    "Run Docker Compose for LaTeX GroupReport": [
+      "report/GroupTemplate/*.tex",
+    ],
+    "Run Docker Compose for LaTeX Reflections": [
+      "report/ReflectionsTemplate/*.tex",
+    ],
+  },
+}

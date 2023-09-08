@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Docker Compose for LaTeX GroupReport",
+      "type": "shell",
+      "command": "./report/latexUtils/GroupReport-windows.bat",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+    },
+    {
+      "label": "Run Docker Compose for LaTeX Reflections",
+      "type": "shell",
+      "command": "./report/latexUtils/Reflections-windows.bat",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+    }
+  ]
+}

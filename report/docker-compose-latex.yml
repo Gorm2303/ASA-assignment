@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  latex:
+    image: latexcompiler
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: ./ReflectionsTemplate
+        target: /reflection
+      - type: bind
+        source: ./GroupTemplate
+        target: /groupreport

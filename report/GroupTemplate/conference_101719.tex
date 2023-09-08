@@ -1,0 +1,266 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+
+\usepackage{multirow}
+\usepackage{rotating}
+
+\usepackage{mdframed}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{makecell}
+\usepackage{tcolorbox}
+\usepackage{amsthm}
+%\usepackage[english]{babel}
+\usepackage{pifont} % checkmarks
+%\theoremstyle{definition}
+%\newtheorem{definition}{Definition}[section]
+
+
+\usepackage{listings}
+\lstset
+{ 
+    basicstyle=\footnotesize,
+    numbers=left,
+    stepnumber=1,
+    xleftmargin=5.0ex,
+}
+
+
+%SCJ
+\usepackage{subcaption}
+\usepackage{array, multirow}
+\usepackage{enumitem}
+
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+%\IEEEpubid{978-1-6654-8356-8/22/\$31.00 ©2022 IEEE}
+% @Sune:
+% Found this suggestion: https://site.ieee.org/compel2018/ieee-copyright-notice/
+% I have added it - you can see if it fulfills the requirements
+
+%\IEEEoverridecommandlockouts
+%\IEEEpubid{\makebox[\columnwidth]{978-1-6654-8356-8/22/\$31.00 ©2022 IEEE %\hfill} \hspace{\columnsep}\makebox[\columnwidth]{ }}
+                                 %978-1-6654-8356-8/22/$31.00 ©2022 IEEE
+% copyright notice added:
+%\makeatletter
+%\setlength{\footskip}{20pt} 
+%\def\ps@IEEEtitlepagestyle{%
+%  \def\@oddfoot{\mycopyrightnotice}%
+%  \def\@evenfoot{}%
+%}
+%\def\mycopyrightnotice{%
+%  {\footnotesize 978-1-6654-8356-8/22/\$31.00 ©2022 IEEE\hfill}% <--- Change here
+%  \gdef\mycopyrightnotice{}% just in case
+%}
+
+      
+\title{Group Report Template\\
+}
+
+\author{
+    \IEEEauthorblockN{
+        Student 1\IEEEauthorrefmark{1},
+        Student 2\IEEEauthorrefmark{1},
+        Student 3\IEEEauthorrefmark{1},
+        Student 4\IEEEauthorrefmark{1},
+        Student 5\IEEEauthorrefmark{1},
+    }
+    \IEEEauthorblockA{
+        University of Southern Denmark, SDU Software Engineering, Odense, Denmark \\
+        Email: \IEEEauthorrefmark{1} \textnormal{\{student1,student2,student3,student4,student5\}}@mmmi.sdu.dk
+    }
+}
+
+
+%%%%
+
+%\author{\IEEEauthorblockN{1\textsuperscript{st} Blinded for review}
+%\IEEEauthorblockA{\textit{Blinded for review} \\
+%\textit{Blinded for review}\\
+%Blinded for review \\
+%Blinded for review}
+%\and
+%\IEEEauthorblockN{2\textsuperscript{nd} Blinded for review}
+%\IEEEauthorblockA{\textit{Blinded for review} \\
+%\textit{Blinded for review}\\
+%Blinded for review \\
+%Blinded for review}
+%\and
+%\IEEEauthorblockN{3\textsuperscript{nd} Blinded for review}
+%\IEEEauthorblockA{\textit{Blinded for review} \\
+%\textit{Blinded for review}\\
+%Blinded for review \\
+%Blinded for review}
+%}
+
+%%%%
+%\IEEEauthorblockN{2\textsuperscript{nd} Given Name Surname}
+%\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+%\textit{name of organization (of Aff.)}\\
+%City, Country \\
+%email address or ORCID}
+
+
+
+\maketitle
+\IEEEpubidadjcol
+\begin{abstract}
+%%%%%%%%%%%%%%%%%% Max 970 signs without space %%%%%%%%%%%%%%%%%%
+% Intro
+
+% Gab
+    
+% Aim 
+
+% Method
+
+% Results 
+
+\end{abstract}
+
+\begin{IEEEkeywords}
+Keyword1, Keyword2, Keyword3, Keyword4, Keyword5
+\end{IEEEkeywords}
+
+\section{Introduction and Motivation}
+%Introduction and motivate the problem
+
+
+
+
+
+
+The structure of the paper is as follows. 
+Section \ref{sec:problem} outlines the research question and the research approach. 
+%to analyze the research question and evaluate our results.
+Section \ref{sec:related_work} describes similar work in the field and how our contribution fits the field.
+Section \ref{sec:use_case} presents a production reconfiguration use case.
+The use case serves as input to specify a reconfigurability QA requirement in Section \ref{sec:qas}.
+Section \ref{sec:middleware_architecture} introduces the proposed reconfigurable middleware software architecture design.
+Section \ref{sec:evaluation} evaluates the proposed middleware on realistic equipment in the I4.0 lab and analyzes the results against the stated QA requirement.   
+
+\section{Problem and Approach}
+
+\label{sec:problem}
+\emph{Problem.}
+  
+
+\emph{Research questions:}
+\begin{enumerate}
+    \item  
+    \item 
+\end{enumerate}
+
+
+\emph{Approach.}
+The following steps are taken to answer this paper's research questions: 
+\begin{enumerate}
+    \item 
+\end{enumerate}
+
+
+
+\section{Related work}
+\label{sec:related_work}
+This Section addresses existing contributions by examining xxx in the I4.0 domain. 
+In total, x papers are investigated. 
+
+In \cite{Wan2019Reconfigurable}, experiences are elaborated on a three-layer architecture of a reconfigurable smart factory for drug packing in healthcare I4.0. 
+
+
+The paper \cite{Yazen2010Ontology} proposes an ontology agent-based architecture for inferring  new configurations to adapt to changes in manufacturing requirements and/or environment.
+
+
+
+In \cite{Leitao2016Specification,Angione2017Integration} an architecture for a reconfigurable production system is specified.
+Two objectives for reconfiguration and how they can be reached are described.
+
+
+Several papers \cite{Koren1999Reconfigurable,Koren2010Design,Bortolini2018Reconfigurable} describe reconfigurable manufacturing systems that are cost-effective and responsive to market changes.
+
+All contributions provide valuable knowledge about reconfiguration but lack a study of the software architecture perspective that specifies a quantifiable reconfigurability architectural requirement, a software architecture that adopts the architectural requirements, and evaluates the architectural requirement. 
+
+
+
+\section{Use Case and Quality Attribute Scenario}
+\label{sec:use_case_and_qas}
+This Section introduces the use case and the specified x QASes.
+The QASes are developed based on the use case.
+
+\subsection{Use case}
+\label{sec:use_case}
+
+
+
+
+
+\subsection{Quality attribute scenarios}
+\label{sec:qas}
+
+
+
+
+
+
+
+
+
+
+\section{The solution}
+\label{sec:middleware_architecture}
+
+% Description of the overall architecture designs
+% Argue for tactics used to archieve the QASes
+% Discuss the trade-offs
+
+This section will describe a proposed design of that aims to achieve the stated QASes stated in the previous section.
+
+
+ 
+
+
+
+\section{Evaluation}
+\label{sec:evaluation}
+This Section describes the evaluation of the proposed design.
+Section \ref{sec:design} introduces the design of the experiment to evaluate the system. 
+Section \ref{sec:measurements} identifies the measurements in the system for the experiment.
+Section \ref{sec:pilot_test} describes the pilot test used to compute the number of replication in the actual evaluation. 
+Section \ref{sec:analysis} presents the analysis of the results from the experiment. 
+
+ 
+\subsection{Experiment design}
+\label{sec:design}
+
+
+\subsection{Measurements}
+\label{sec:measurements}
+
+
+\subsection{Pilot test}
+\label{sec:pilot_test}
+
+\subsection{Analysis}
+\label{sec:analysis}
+
+
+\section{Future work}
+
+
+\section{Conclusion}
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+\vspace{12pt}
+\end{document}

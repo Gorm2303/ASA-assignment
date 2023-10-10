@@ -26,11 +26,10 @@ services:
       timeout: 5s
       retries: 5
 
-  webapplication1:
-    image: ${DOCKER_REGISTRY-}webapplication1
+  order-service:
     build:
       context: .
-      dockerfile: WebApplication1/WebApplication1/Dockerfile
+      dockerfile: OrderService/OrderService/Dockerfile
     ports:
       - "5003:80"
     depends_on:

@@ -5,14 +5,13 @@ using System.Diagnostics;
 using System.Net;
 using System.Text.Json;
 
-namespace WebApplication1.Controllers;
-
+namespace OrderService.Controllers;
 
 [ApiController]
-[Route("[Controller]")]
+[Route("[controller]")]
 public class OrderController : ControllerBase
 {
-    private readonly string BrokerServer = "localhost:9092";
+    private readonly string BrokerServer = "broker:9092";
     private readonly string Topic = "order";
     private readonly ILogger<OrderController> _logger;
 
@@ -21,10 +20,10 @@ public class OrderController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet(Name = "GetOrderService")]
+    [HttpGet]
     public string Get()
     {
-        return "Order API";
+        return "Connected Order-Service API";
     }
 
     [HttpPost]
@@ -43,8 +42,7 @@ public class OrderController : ControllerBase
 
         try
         {
-            using (var producer = new ProducerBuilder
-            <Null, string>(config).Build())
+            using (var producer = new ProducerBuilder<Null, string>(config).Build())
             {
                 var result = await producer.ProduceAsync
                 (topic, new Message<Null, string>
@@ -52,7 +50,7 @@ public class OrderController : ControllerBase
                     Value = message
                 });
 
-                Debug.WriteLine($"Delivery Timestamp:{result.Timestamp.UtcDateTime}");
+                Console.WriteLine($"Delivery Timestamp:{result.Timestamp.UtcDateTime}");
                 return await Task.FromResult(true);
             }
         }
@@ -64,4 +62,3 @@ public class OrderController : ControllerBase
         return await Task.FromResult(false);
     }
 }
-

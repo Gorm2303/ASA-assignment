@@ -1,4 +1,4 @@
-namespace WebApplication1
+namespace OrderService
 {
     public class WeatherForecast
     {

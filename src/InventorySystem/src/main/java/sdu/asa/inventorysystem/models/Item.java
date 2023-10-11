@@ -12,4 +12,8 @@ import org.springframework.context.annotation.Bean;
 public class Item {
     public int id;
     public String name;
+
+    @Override public String toString() {
+        return "{" + "id:" + id + ", name:" + name + "}";
+    }
 }

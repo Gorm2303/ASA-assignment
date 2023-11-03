@@ -1,6 +1,7 @@
 ﻿using Confluent.Kafka;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OrderService.Services;
 using System.Diagnostics;
 using System.Net;
 using System.Text.Json;
@@ -14,10 +15,11 @@ public class OrderController : ControllerBase
     private readonly string BrokerServer = "broker:9092";
     private readonly string Topic = "order";
     private readonly ILogger<OrderController> _logger;
-
-    public OrderController(ILogger<OrderController> logger)
+    private readonly IOrderService _orderService;
+    public OrderController(ILogger<OrderController> logger, IOrderService orderService)
     {
         _logger = logger;
+        _orderService = orderService;
     }
 
     [HttpGet]

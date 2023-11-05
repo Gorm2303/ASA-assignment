@@ -1,24 +1,45 @@
-﻿using StackExchange.Redis;
+﻿using Newtonsoft.Json;
+using StackExchange.Redis;
 
 namespace OrderService.Services;
 
 public class OrderRepository : IOrderRepository
 {
-    private readonly IDatabase _db;
-    private readonly ConnectionMultiplexer _redis;
+    private readonly ConnectionMultiplexer _redisConnection;
+
     public OrderRepository()
     {
-        _redis = ConnectionMultiplexer.Connect("localhost");
-        _db = _redis.GetDatabase();
+        _redisConnection = ConnectionMultiplexer.Connect("orderstore:6379");
     }
 
     public Order GetOrderAsync(string id)
     {
-        throw new NotImplementedException();
+        var redisDb = _redisConnection.GetDatabase();
+
+        // Retrieve the serialized object from Redis and deserialize it
+        string serializedOrder = redisDb.StringGet($"Order:{id}");
+
+        if (serializedOrder == RedisValue.Null)
+        {
+            // The object was not found in the cache
+            return null;
+        }
+
+        Order order = JsonConvert.DeserializeObject<Order>(serializedOrder);
+
+        return order;
     }
 
     public void StoreOrderAsync(Order order)
     {
-        throw new NotImplementedException();
+        var redisDb = _redisConnection.GetDatabase();
+
+        // Serialize the Order object to JSON or any other format of your choice
+        string serializedOrder = JsonConvert.SerializeObject(order);
+
+        // Store the serialized object in Redis with a key
+        redisDb.StringSet($"Order:{order.Id}", serializedOrder);
     }
+
+
 }

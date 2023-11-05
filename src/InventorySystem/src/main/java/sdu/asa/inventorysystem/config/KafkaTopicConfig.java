@@ -9,8 +9,8 @@ import org.springframework.kafka.config.TopicBuilder;
 public class KafkaTopicConfig {
 
     @Bean
-    public NewTopic itemReceived(){
-        return TopicBuilder.name("item-received")
+    public NewTopic order(){
+        return TopicBuilder.name("order")
                 .build();
     }
 }

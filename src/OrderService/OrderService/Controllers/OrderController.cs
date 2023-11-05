@@ -15,11 +15,11 @@ public class OrderController : ControllerBase
     private readonly string BrokerServer = "broker:9092";
     private readonly string Topic = "order";
     private readonly ILogger<OrderController> _logger;
-    private readonly IOrderService _orderService;
-    public OrderController(ILogger<OrderController> logger, IOrderService orderService)
+    private readonly IOrderRepository _orderRepository;
+    public OrderController(ILogger<OrderController> logger, IOrderRepository orderRepository)
     {
         _logger = logger;
-        _orderService = orderService;
+        _orderRepository = orderRepository;
     }
 
     [HttpGet]
@@ -32,6 +32,7 @@ public class OrderController : ControllerBase
     public async Task<IActionResult> Post([FromBody] Order orderRequest)
     {
         string message = JsonSerializer.Serialize(orderRequest);
+        //_orderRepository.StoreOrderAsync(orderRequest);
         return Ok(await SendOrderRequest(Topic, message));
     }
     private async Task<bool> SendOrderRequest(string topic, string message)

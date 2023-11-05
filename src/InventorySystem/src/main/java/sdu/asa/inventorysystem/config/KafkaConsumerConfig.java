@@ -1,19 +1,14 @@
 package sdu.asa.inventorysystem.config;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
-import org.springframework.kafka.config.KafkaListenerContainerFactory;
 import org.springframework.kafka.core.*;
-import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
-import org.springframework.kafka.support.serializer.JsonSerializer;
-import sdu.asa.inventorysystem.models.Item;
+import sdu.asa.inventorysystem.models.Order;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,15 +31,15 @@ public class KafkaConsumerConfig {
 
     //Value of ProducerFactory can be java objects such as an "item"
     @Bean
-    public ConsumerFactory<String, Item> consumerFactory() {
+    public ConsumerFactory<String, Order> consumerFactory() {
         return new DefaultKafkaConsumerFactory<>(consumerConfig(),
                 new StringDeserializer(),
-                new JsonDeserializer<>(Item.class));
+                new JsonDeserializer<>(Order.class));
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, Item> kafkaListenerContainerFactory(){
-        ConcurrentKafkaListenerContainerFactory<String, Item> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    public ConcurrentKafkaListenerContainerFactory<String, Order> kafkaListenerContainerFactory(){
+        ConcurrentKafkaListenerContainerFactory<String, Order> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }

@@ -22,10 +22,19 @@ public class OrderController : ControllerBase
         _orderRepository = orderRepository;
     }
 
-    [HttpGet]
-    public string Get()
+    [HttpGet("status")]
+    public string Status()
     {
         return "Connected Order-Service API";
+    }
+
+    [HttpGet("{id}")]
+    public Order Get(int id)
+    {
+        var order = _orderRepository.GetOrderAsync(id);
+
+        return order;
+
     }
 
     [HttpPost]

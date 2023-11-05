@@ -12,7 +12,7 @@ public class OrderRepository : IOrderRepository
         _redisConnection = ConnectionMultiplexer.Connect("orderstore:6379");
     }
 
-    public Order GetOrderAsync(string id)
+    public Order GetOrderAsync(int id)
     {
         var redisDb = _redisConnection.GetDatabase();
 

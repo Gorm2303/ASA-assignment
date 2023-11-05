@@ -57,3 +57,11 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  mongo:
+      ports:
+          - '27017:27017'
+      restart: always
+      image: mongo
+      volumes:
+      - ./mongo-data:/data/db

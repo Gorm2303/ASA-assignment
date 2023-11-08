@@ -13,4 +13,10 @@ public class KafkaTopicConfig {
         return TopicBuilder.name("order")
                 .build();
     }
+
+    @Bean
+    public NewTopic orderPart(){
+        return TopicBuilder.name("order-part")
+                .build();
+    }
 }

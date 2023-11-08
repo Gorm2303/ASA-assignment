@@ -2,6 +2,7 @@ package sdu.asa.inventorysystem.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.repository.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import sdu.asa.inventorysystem.dto.ItemDto;
@@ -25,6 +26,17 @@ public class InventoryController {
     @ResponseStatus(HttpStatus.OK)
     public List<Item> getAllProducts(){
         return inventoryRepository.findAll();
+    }
+    @PostMapping()
+    @ResponseStatus(HttpStatus.OK)
+    public Item createItem(@RequestBody ItemDto itemDto){
+        return inventoryRepository.save(new Item(itemDto.getId(), itemDto.getName(), itemDto.getQuantity()));
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteProduct(@PathVariable String id){
+        inventoryRepository.deleteById(id);
     }
 
     @GetMapping("/home")

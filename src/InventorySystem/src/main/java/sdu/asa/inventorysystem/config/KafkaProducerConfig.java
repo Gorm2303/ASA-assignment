@@ -10,6 +10,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 import sdu.asa.inventorysystem.models.Order;
+import sdu.asa.inventorysystem.models.Part;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,9 +35,20 @@ public class KafkaProducerConfig {
         return new DefaultKafkaProducerFactory<>(producerConfig());
     }
 
+    @Bean
+    public ProducerFactory<String, Part> producerFactoryPart() {
+        return new DefaultKafkaProducerFactory<>(producerConfig());
+    }
+
+
     //Objects as value...
     @Bean
     public KafkaTemplate<String, Order> kafkaTemplate(){
         return new KafkaTemplate<>(producerFactory());
+    }
+
+    @Bean
+    public KafkaTemplate<String, Part> kafkaTemplatePart(){
+        return new KafkaTemplate<>(producerFactoryPart());
     }
 }

@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import sdu.asa.inventorysystem.models.Item;
 
 @Repository
-public interface InventoryRepository extends MongoRepository<Item, Integer> {
+public interface InventoryRepository extends MongoRepository<Item, String> {
 }

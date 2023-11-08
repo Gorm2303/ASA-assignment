@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import sdu.asa.inventorysystem.models.Item;
 import sdu.asa.inventorysystem.repository.InventoryRepository;
-import sdu.asa.inventorysystem.service.ItemService;
 
 import java.util.List;
 

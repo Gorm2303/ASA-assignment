@@ -1,0 +1,13 @@
+C:\Users\mnhni\Documents\School\Advanced-Software-Architecture\ASA-assignment\src\InventorySystem\src\main\java\sdu\asa\inventorysystem\KafkaListeners.java
+C:\Users\mnhni\Documents\School\Advanced-Software-Architecture\ASA-assignment\src\InventorySystem\src\main\java\sdu\asa\inventorysystem\controller\InventoryController.java
+C:\Users\mnhni\Documents\School\Advanced-Software-Architecture\ASA-assignment\src\InventorySystem\src\main\java\sdu\asa\inventorysystem\models\Order.java
+C:\Users\mnhni\Documents\School\Advanced-Software-Architecture\ASA-assignment\src\InventorySystem\src\main\java\sdu\asa\inventorysystem\config\KafkaProducerConfig.java
+C:\Users\mnhni\Documents\School\Advanced-Software-Architecture\ASA-assignment\src\InventorySystem\src\main\java\sdu\asa\inventorysystem\config\KafkaTopicConfig.java
+C:\Users\mnhni\Documents\School\Advanced-Software-Architecture\ASA-assignment\src\InventorySystem\src\main\java\sdu\asa\inventorysystem\mapper\ItemMapper.java
+C:\Users\mnhni\Documents\School\Advanced-Software-Architecture\ASA-assignment\src\InventorySystem\src\main\java\sdu\asa\inventorysystem\models\Part.java
+C:\Users\mnhni\Documents\School\Advanced-Software-Architecture\ASA-assignment\src\InventorySystem\src\main\java\sdu\asa\inventorysystem\MessageController.java
+C:\Users\mnhni\Documents\School\Advanced-Software-Architecture\ASA-assignment\src\InventorySystem\src\main\java\sdu\asa\inventorysystem\repository\InventoryRepository.java
+C:\Users\mnhni\Documents\School\Advanced-Software-Architecture\ASA-assignment\src\InventorySystem\src\main\java\sdu\asa\inventorysystem\InventorySystemApplication.java
+C:\Users\mnhni\Documents\School\Advanced-Software-Architecture\ASA-assignment\src\InventorySystem\src\main\java\sdu\asa\inventorysystem\dto\ItemDto.java
+C:\Users\mnhni\Documents\School\Advanced-Software-Architecture\ASA-assignment\src\InventorySystem\src\main\java\sdu\asa\inventorysystem\models\Item.java
+C:\Users\mnhni\Documents\School\Advanced-Software-Architecture\ASA-assignment\src\InventorySystem\src\main\java\sdu\asa\inventorysystem\config\KafkaConsumerConfig.java

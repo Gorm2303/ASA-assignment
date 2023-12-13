@@ -1,0 +1,172 @@
+\onecolumn
+\appendix
+
+\subsection{Requirements}\label{Requirements}
+
+\begin{table}[h]
+\caption{Software and Production Requirements}
+
+\normalsize 
+\begin{tabular}{|p{0.2\linewidth}|p{0.75\linewidth}|}
+\hline
+\textbf{Category} & \textbf{Requirements} \\ \hline
+Production Requirements & Production software must be able to exchange and coordinate information to execute a production and change production \\ \hline
+Production Requirements & Production software must run 24/7 \\ \hline
+Production Requirements & Production software must be continuously deployable \\ \hline
+Software Requirements & Different programming languages \\ \hline
+Software Requirements & Different databases \\ \hline
+Software Requirements & Different message buses \\ \hline
+Software Requirements & Different containers \\ \hline
+Software Requirements & Point-to-point communication between two or more programming languages, e.g., protocol buffers \\ \hline
+Software Requirements & Different architectural styles, e.g., event-driven, client-server, microservice, layers \\ \hline
+Software Requirements & Different architectural patterns/tactics, e.g., circuit breaker, visitor pattern \\ \hline
+\end{tabular}
+\end{table}
+
+
+\subsection{Use cases}
+\label{sec:appUseCase}
+\begin{table}[h]
+\caption{Use Case B: Change Production Parameters}
+\normalsize 
+\begin{tabular}{|p{0.2\linewidth}|p{0.75\linewidth}|}
+\hline
+\textbf{Actors} & Production Manager, Optimizers, Connectors/Adapters, Production Components \\ \hline
+\textbf{Preconditions} & An ongoing production process exists. \\ \hline
+\textbf{Steps} & 
+1. Clients initiate a change request. \\ &
+2. Optimizers assess the impact of the change on the overall production flow. \\ &
+3. Connectors/Adapters facilitate the adjustment of production component parameters. \\ &
+4. Production components adapt to the new parameters. \\ \hline
+\textbf{Postconditions} & Production parameters are changed without disrupting the overall production flow. \\ \hline
+\end{tabular}
+\end{table}
+
+\vspace{5mm} % Adds some space between the tables
+
+\begin{table}[h]
+\caption{Use Case C: Continuous Production Monitoring}
+\normalsize 
+\begin{tabular}{|p{0.2\linewidth}|p{0.75\linewidth}|}
+\hline
+\textbf{Actors} & Quality Control, Sensors, Connectors/Adapters, Production Components \\ \hline
+\textbf{Preconditions} & The production system is operational. \\ \hline
+\textbf{Steps} & 
+1. Sensors continuously monitor production processes. \\ &
+2. Sensor data is transmitted through Connectors/Adapters. \\ &
+3. Quality Control analyzes the data for deviations. \\ &
+4. If deviations are detected, Quality Control takes corrective actions. \\ \hline
+\textbf{Postconditions} & Continuous monitoring ensures product quality and timely intervention. \\ \hline
+\end{tabular}
+\end{table}
+
+\vspace{5mm} % Adds some space between the tables
+
+\begin{table}[h]
+\caption{Use Case D: 24/7 Production Availability}
+\normalsize 
+\begin{tabular}{|p{0.2\linewidth}|p{0.75\linewidth}|}
+\hline
+\textbf{Actors} & Production Manager, Production Scheduler, Optimizers, Connectors/Adapters, Production Components \\ \hline
+\textbf{Preconditions} & The production system is in operation. \\ \hline
+\textbf{Steps} & 
+1. Production Manager schedules production runs for continuous operation. \\ &
+2. Production Scheduler optimizes resource allocation to minimize downtime. \\ &
+3. Connectors/Adapters ensure data exchange between components. \\ &
+4. Production Components operate without interruptions. \\ \hline
+\textbf{Postconditions} & The production system runs 24/7 with optimized resource usage. \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{Tactics and Patterns}
+\label{sec:appTactics}
+\begin{table}[ht]
+\centering
+\caption{Availability tactics}
+\label{tab:availability}
+\begin{tblr}{
+  cell{1}{2} = {c=2}{},
+  hlines,
+  vlines,
+}
+\textbf{\textbf{Detect faults}}    & \textbf{\textbf{Recover from faults}}    &                                  & \textbf{Prevent faults}            \\
+\textbf{—------------------------} & \textbf{\textbf{Preparation and Repair}} & \textbf{\textbf{Reintroduction}} & \textbf{—------------------------} \\
+Monitor                            & Redundant spare                          & Shadow                           & Transactions                       \\
+Ping/Echo                          & Rollback                                 &                                  & Removal from service               \\
+Heartbeat                          & Exception handling                       &                                  &                                    \\
+Exception checking                 & Retry                                    &                                  &                                    \\
+                                   & Ignore faulty behavior                   &                                  &                                    
+\end{tblr}
+\end{table}
+
+
+\textbf{Deployability tactics:}
+
+Manage deployment pipeline - Script deployment commands
+
+Manage deployed system - Containerization, package dependencies.
+
+The choice of these deployability tactics is driven by the need for a system that can be rapidly and reliably updated and maintained. In the context of a production system for manufacturing farming equipment, where downtime can have significant operational and financial implications, ensuring that software deployments are smooth, fast, and error-free is important. 
+
+By automating the deployment process, the system minimizes downtime during updates and maintenance. This is particularly beneficial in a 24/7 operation environment, where even short periods of downtime can disrupt the production schedule. However, the automation of the deployment pipeline requires an initial investment in terms of setting up and testing the scripts. There's also a need for ongoing maintenance to ensure that the scripts remain up-to-date with the evolving system.
+
+Containerization ensures that the application runs the same way regardless of where it is deployed. This consistency is crucial in a system where updates need to be regularly and reliably rolled out across different environments. While containerization offers significant benefits in terms of consistency and resource efficiency, it introduces complexity in managing container orchestration, networking, and storage. Additionally, ensuring security within containers is a critical aspect that requires diligent management. The decision to use containerization as a deployability tactic is driven by the need for a reliable, scalable, and consistent deployment process in the manufacturing production system.\\
+
+
+\textbf{Interoperability tactics:}
+
+Manage Interfaces - Orchestrate using CI/CD Pipelines. Tailor Interface by making APIs
+
+The selected interoperability tactics are critical in addressing the complexities of a production system that integrates various technologies and components. 
+
+CI/CD pipelines facilitate rapid integration of changes, ensuring that the system is always running the most current and compatible version of each component. This is crucial for maintaining interoperability in a system where components are frequently updated. The trade-off lies in setting up and maintaining CI/CD pipelines requires significant technical expertise and infrastructure. There is also a need for rigorous testing protocols to ensure that automated deployments do not introduce errors.
+
+APIs ensure that communication between different components is predictable and consistent. This is particularly important in systems that involve external integrations or need to be scalable. Designing and maintaining APIs can be resource-intensive. They require ongoing updates and documentation to ensure they remain effective and secure. Additionally, overly restrictive APIs can limit flexibility and innovation.\\
+
+
+\textbf{Availability tactics:} 
+
+In table \ref{tab:availability} are the tactics with respect to the availability of the system.
+
+Detect Faults
+
+Monitor: Continuously monitoring system performance and the status of production components can help quickly identify issues, ensuring minimal downtime and maintaining production efficiency. It provides early issue detection but can be resource-intensive and may lead to information overload.
+
+Heartbeat: Implementing a heartbeat mechanism can help in ensuring that all critical components of the manufacturing system are operational and in sync.
+
+Exception Checking: Regular checks for exceptions in software controlling the machinery can prevent minor software glitches from escalating into major production halts. It is key for identifying software bugs early but can introduce performance overhead and demands an understanding of potential exceptions.
+
+Preparation and Repair
+
+Redundant Spare: Having redundant spares for critical components ensures that production can continue with minimal interruption in the event of a failure. While ensuring minimal production interruption, maintaining redundant spares incurs additional costs and requires extra space for storage.
+
+Rollback: The ability to rollback to a previous stable state can be crucial in quickly recovering from software updates or changes that cause issues. Rollback capabilities enable quick recovery from problematic updates, but they can be complex to implement and may not always fully revert all effects, especially in interconnected systems.
+
+Exception Handling: Robust exception handling in software systems can gracefully manage unexpected errors, ensuring stability in production processes. Effective in managing errors, robust exception handling can add complexity to software development and may mask underlying issues if overused.
+
+Retry: Implementing retry mechanisms in case of failures, such as communication timeouts, can help maintain continuous operation. Implementing retries maintains operation continuity but can lead to system inefficiencies, especially if retries are frequent or if the underlying issue is persistent.
+
+Ignore Faulty Behavior: In some cases, ignoring non-critical faults can allow production to continue without interruption, although this should be used judiciously. Ignoring non-critical faults can keep production running smoothly but risks accumulating unnoticed issues that could lead to more significant problems over time.
+
+Reintroduction
+
+Shadow: Using shadow systems for critical control systems can ensure immediate failover with no disruption in production, maintaining continuous operation and quality control. Utilizing shadow systems ensures seamless failover and uninterrupted operation but can be resource-intensive, as it requires running duplicate systems simultaneously.
+
+Prevent Faults
+
+Transactions: Employing transactional mechanisms in software controlling the production process can help ensure data integrity, particularly in complex operations involving multiple steps or components. The trade-off is the potential performance overhead due to the locking and synchronization mechanisms required in transaction processing.
+
+Removal from Service: Proactively removing components from service for maintenance or upon detecting early signs of failure can prevent more significant issues and maintain the overall health of the production system. Proactively removing components for maintenance enhances system reliability but can temporarily reduce system capacity. \\
+
+
+\textbf{Availability design patterns:}
+
+Strategy pattern - Maintain operation through strategic changes during failures. Enables adaptability during failures but requires careful planning to ensure alternative strategies are effective and do not introduce new issues.
+
+Observer pattern - Aids with identifying and responding to failures, but it can add complexity to the system and possibly affect performance due to the overhead of handling and observing multiple events.
+
+Circuit breaker pattern - Stop retrying an action when a failure occurs to minimize the spread of the failure. It can lead to temporary unavailability of certain functionalities.
+
+Bulkhead pattern - Isolate components so that when a failure occurs, it doesn’t spread to other components. The trade-off is the potential increase in complexity and resource usage due to the need for component isolation.
+
+

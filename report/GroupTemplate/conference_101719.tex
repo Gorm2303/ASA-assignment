@@ -7,7 +7,7 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
-
+\usepackage{tabularray}
 \usepackage{multirow}
 \usepackage{rotating}
 
@@ -64,20 +64,18 @@
 %}
 
       
-\title{Group Report Template\\
+\title{Architectural Strategies for Industry 4.0: Designing a Flexible and Scalable Production Software System
 }
 
 \author{
     \IEEEauthorblockN{
-        Student 1\IEEEauthorrefmark{1},
-        Student 2\IEEEauthorrefmark{1},
-        Student 3\IEEEauthorrefmark{1},
-        Student 4\IEEEauthorrefmark{1},
-        Student 5\IEEEauthorrefmark{1},
+        Gorm Krings\IEEEauthorrefmark{1},
+        Mikkel Plagborg Andersen\IEEEauthorrefmark{1},
+        Frederik Primdahl Tønnes\IEEEauthorrefmark{1}
     }
     \IEEEauthorblockA{
-        University of Southern Denmark, SDU Software Engineering, Odense, Denmark \\
-        Email: \IEEEauthorrefmark{1} \textnormal{\{student1,student2,student3,student4,student5\}}@mmmi.sdu.dk
+    \IEEEauthorrefmark{1}University of Southern Denmark, SDU Software Engineering, Odense, Denmark \\
+        Email: \IEEEauthorrefmark{1} \textnormal{\{gokri20, mikke20, frtoe20\}}@student.sdu.dk
     }
 }
 
@@ -116,104 +114,174 @@
 \IEEEpubidadjcol
 \begin{abstract}
 %%%%%%%%%%%%%%%%%% Max 970 signs without space %%%%%%%%%%%%%%%%%%
-% Intro
+This paper presents an exploration of designing a production software system within the context of Industry 4.0, focusing on a manufacturing organization. The primary challenge lies in creating a system that is robust, flexible, and scalable, integrating various technologies, and ensuring continuous operation and high throughput. 
+A literature review was conducted, analyzing recent studies within the Industry 4.0 framework. This review informed the development of a series of use cases and quality attribute scenarios, outlining the essential requirements of the system. The chosen architecture employs a microservices approach.
+The system was evaluated, measuring key performance indicators like integration time, system stability, and deployment efficiency. The findings indicate that the microservices architecture, combined with a strategic use of containerization and deployment pipelines, effectively meets the system's requirements. However, the study also highlights the need for further research, particularly in integrating physical components and simulating real-world manufacturing scenarios.
 
-% Gab
-    
-% Aim 
-
-% Method
-
-% Results 
 
 \end{abstract}
 
 \begin{IEEEkeywords}
-Keyword1, Keyword2, Keyword3, Keyword4, Keyword5
+Industry 4.0, Production, Architecture, Scalability, Trade-offs, Interoperability, Deployability.
 \end{IEEEkeywords}
 
 \section{Introduction and Motivation}
 %Introduction and motivate the problem
+In the evolving landscape of Industry 4.0, the intersection of diverse technologies and architectural paradigms presents both a challenge and an opportunity for the design of production systems. This paper delves into the complexities of developing a flexible, efficient, and robust production system within the context of Industry 4.0. 
 
+The motivation behind this work stems from the need to address a central architectural challenge in production systems: the orchestration of various production components and machinery to accomplish common objectives. This challenge is heightened by the inherent diversity in these systems, often comprising a mix of components from different vendors, each with its unique technological stack and operational paradigms. 
 
+In designing such a system, we confront the realities of existing technological commitments. Often, production systems are already equipped with a range of components, locking them into specific technological paths that may constrain future architectural choices. Architects need to possess a deep understanding of the characteristics and implications of various technologies. Staying up to date with all emerging technologies is an unrealistic goal. Therefore, the emphasis is on comprehending the consequences and trade-offs inherent in selecting particular technologies for the system.
 
+Our approach is to explore and work with different architectures and technologies, leveraging the strengths of each to create a system that is not only aligned with current needs but also adaptable to future developments. 
 
-
-
-The structure of the paper is as follows. 
-Section \ref{sec:problem} outlines the research question and the research approach. 
-%to analyze the research question and evaluate our results.
-Section \ref{sec:related_work} describes similar work in the field and how our contribution fits the field.
-Section \ref{sec:use_case} presents a production reconfiguration use case.
-The use case serves as input to specify a reconfigurability QA requirement in Section \ref{sec:qas}.
-Section \ref{sec:middleware_architecture} introduces the proposed reconfigurable middleware software architecture design.
-Section \ref{sec:evaluation} evaluates the proposed middleware on realistic equipment in the I4.0 lab and analyzes the results against the stated QA requirement.   
+The intention is to contribute to the field of production system design, particularly in the context of Industry 4.0, by providing insights into the architectural challenges and opportunities presented by the integration of diverse technologies. 
+  
 
 \section{Problem and Approach}
 
 \label{sec:problem}
-\emph{Problem.}
-  
+The table in Appendix \ref{Requirements} outlines essential production and software requirements for a production software system. The "Production Requirements" emphasize continuous operation and adaptability, while "Software Requirements" detail the need for diverse technologies, including multiple programming languages, databases, and architectural styles. 
+
+The problem to be solved revolves around creating a robust, flexible, and scalable production software system that meets the requirements of a medium-sized manufacturing organization involved in farming products. This system must ensure continuous operation (24/7 availability), support high throughput, integrate various technologies, and maintain data security and integrity. The architecture must also enable continuous deployment and manage communications with multiple stakeholders, including clients, vendors, and internal departments.
 
 \emph{Research questions:}
 \begin{enumerate}
-    \item  
-    \item 
+    \item How can different architectures support the stated production system requirements?
+    \item Which architectural trade-offs must be taken due to the technology choices?
 \end{enumerate}
 
 
 \emph{Approach.}
 The following steps are taken to answer this paper's research questions: 
 \begin{enumerate}
-    \item 
+    \item A literature review will be conducted to research existing architectures used in similar industries, focusing on their strengths and weaknesses in relation to the requirements.
+    \item The problem will be described with use cases and quality attribute scenarios to describe and specify architectural requirements.
+    \item The architecture will be designed using tactics and patterns that address the needs identified by the quality attribute scenarios.
+    \item The architecture will be evaluated using prototyping and pilot tests to measure that the quality attribute scenarios are fulfilled.
 \end{enumerate}
 
 
 
 \section{Related work}
 \label{sec:related_work}
-This Section addresses existing contributions by examining xxx in the I4.0 domain. 
-In total, x papers are investigated. 
+A total of 8 papers were examined revolving around Industry 4.0 and software architecture.
 
-In \cite{Wan2019Reconfigurable}, experiences are elaborated on a three-layer architecture of a reconfigurable smart factory for drug packing in healthcare I4.0. 
+\section*{For RQ1 (Different Architectures Supporting Production System Requirements)}
 
+\begin{itemize}
+    \item Studies from \cite{AdoptingMicroservicesDevOps} highlight the close alignment between CPS and enterprise application practices. It emphasizes the adaptability of microservices methods and tools to CPS challenges, focusing on scalability, reliability, and real-time data processing.
+    \item \cite{ABigDataPlatform} demonstrates using big data for user interest analysis and personalized service delivery, offering parallels in designing adaptable CPS architectures.
+    \item The paper \cite{UseOfLightweightVirtualization} focuses on the microservices paradigm in manufacturing, underlining its benefits in modularity, scalability, and flexibility for CPS.
+    \item \cite{IoT-fog-based-healthcare} suggests using fog computing for real-time data processing, which can be adapted for managing production data in CPS.
+\end{itemize}
 
-The paper \cite{Yazen2010Ontology} proposes an ontology agent-based architecture for inferring  new configurations to adapt to changes in manufacturing requirements and/or environment.
+\section*{For RQ2 (Architectural Trade-offs due to Technology Choices)}
 
-
-
-In \cite{Leitao2016Specification,Angione2017Integration} an architecture for a reconfigurable production system is specified.
-Two objectives for reconfiguration and how they can be reached are described.
-
-
-Several papers \cite{Koren1999Reconfigurable,Koren2010Design,Bortolini2018Reconfigurable} describe reconfigurable manufacturing systems that are cost-effective and responsive to market changes.
-
-All contributions provide valuable knowledge about reconfiguration but lack a study of the software architecture perspective that specifies a quantifiable reconfigurability architectural requirement, a software architecture that adopts the architectural requirements, and evaluates the architectural requirement. 
+\begin{itemize}
+    \item Research from \cite{AdoptingMicroservicesDevOps} indicates that parallels in trade-offs experienced in the enterprise domain, such as scalability vs. complexity, can inform CPS architecture decisions.
+    \item \cite{ABigDataPlatform} discusses trade-offs like efficiency vs. complexity in big data platforms, applicable to CPS in balancing architecture features.
+    \item The survey in \cite{UseOfLightweightVirtualization} categorizes microservices features and I4.0 challenges, aiding in understanding the trade-offs of technology choices in CPS.
+    \item \cite{DevOpsForCPS} relates zero-downtime and service adaptation as key trade-offs in architectural decisions for CPS.
+    \item \cite{IRONEDGE} and \cite{UnifiedArchitecturePowering} both discuss frameworks guiding architectural designs in smart infrastructure, emphasizing trade-offs in resource management and network connectivity.
+\end{itemize}
 
 
 
 \section{Use Case and Quality Attribute Scenario}
 \label{sec:use_case_and_qas}
-This Section introduces the use case and the specified x QASes.
+This Section introduces the use case and sub use cases, and 3 QASes.
 The QASes are developed based on the use case.
 
 \subsection{Use case}
 \label{sec:use_case}
+The problem arises from manufacturing farming equipment. This has been described in more detail by identifying four use cases. 
 
+The main use case is about maintaining an advanced, continuous, and adaptive production system for farming equipment manufacturing. This system is characterized by its ability to respond dynamically to changing production demands and parameters while ensuring uninterrupted operation and strict quality control. The integration of various actors, including human roles (Production Manager, Scheduler, Quality Control) and technological components (Connectors/Adapters, Sensors, Production Components), underscores the system's complexity.
 
+\subsubsection*{Main Use Case}
 
+Efficient and Adaptive Production System in Farming Equipment Manufacturing
+\begin{enumerate}[label=\Alph*.]
+    \item Exchange Production Information
+    \item Change Production Parameters
+    \item Continuous Production Monitoring
+    \item 24/7 Production Availability
+\end{enumerate}
+
+\subsubsection*{Sub Use Case A}
+Exchange Production Information
+
+\textbf{Actors:} Production Manager, Production Scheduler, Connectors/Adapters, external integrations, Production Components
+
+\textbf{Preconditions:} Production software is operational, and components are connected.
+
+\textbf{Steps:}
+\begin{enumerate}
+    \item External clients initiate production orders.
+    \item Production Scheduler coordinates the allocation of resources.
+    \item Connectors/Adapters exchange information with production components and machinery.
+    \item Production components execute production tasks.
+\end{enumerate}
+
+\textbf{Postconditions:} Production information is exchanged, and production tasks are executed.
+
+The rest of the sub use cases are in Appendix \ref{sec:appUseCase}.
 
 
 \subsection{Quality attribute scenarios}
 \label{sec:qas}
+To develop quality attribute scenarios for our advanced, continuous, and adaptive production system for farming equipment manufacturing, focusing on interoperability, availability, and deployability, we'll need to define specific scenarios that highlight the expected behavior of the system under various conditions. These scenarios will help in ensuring that the system meets its intended performance and functional goals.
 
+\subsubsection*{Interoperability}
 
+\textbf{Scenario:} A new type of sensor, not previously used in the system, needs to be integrated to enhance the production quality control.
 
+\textbf{Source of Stimulus:} Production Manager.
 
+\textbf{Stimulus:} Integration of a new type of sensor into the existing system.
 
+\textbf{Environment:} During normal operation.
 
+\textbf{Artifact:} Connectors/Adapters.
 
+\textbf{Response:} The system recognizes the new sensor, adapts its protocols to communicate with it, and starts utilizing its data for quality control.
 
+\textbf{Response Measure:} The system successfully integrates the sensor within a specified time frame (e.g., 2 hours), with no interruption in production and no manual code changes required.
+
+\subsubsection*{Availability}
+
+\textbf{Scenario:} The system encounters a critical failure in one of its key production components.
+
+\textbf{Source of Stimulus:} Production Component (e.g., an automated assembly robot).
+
+\textbf{Stimulus:} Critical failure or malfunction.
+
+\textbf{Environment:} During peak production hours.
+
+\textbf{Artifact:} Production system.
+
+\textbf{Response:} The system swiftly switches to a backup component or a redundant operational mode, notifies the Production Manager and the Scheduler, and initiates repair protocols.
+
+\textbf{Response Measure:} Transition to backup operation within 5 minutes, with less than 1\% reduction in production efficiency, and repair or replacement initiation within 1 hour.
+
+\subsubsection*{Deployability}
+
+\textbf{Scenario:} The introduction of a new production line for a different type of farming equipment.
+
+\textbf{Source of Stimulus:} Production Manager.
+
+\textbf{Stimulus:} Decision to deploy a new production line.
+
+\textbf{Environment:} During a planned downtime for a system upgrade.
+
+\textbf{Artifact:} Entire production system, including software and hardware components.
+
+\textbf{Response:} The system adapts to accommodate the new production line, updates its scheduling and quality control parameters, and integrates new hardware and software components.
+
+\textbf{Response Measure:} Complete deployment and operational readiness of the new production line within a predetermined time frame (e.g., 48 hours), with all system components functioning correctly and efficiently.
+
+These scenarios help in specifying the requirements and expected behaviors in key areas of system functionality. They are essential for guiding the design, development, and testing processes to ensure the system meets its intended purposes efficiently and effectively.
 
 
 \section{The solution}
@@ -223,44 +291,153 @@ The QASes are developed based on the use case.
 % Argue for tactics used to archieve the QASes
 % Discuss the trade-offs
 
-This section will describe a proposed design of that aims to achieve the stated QASes stated in the previous section.
+The overall system has been divided into three systems, a production system, an order system, and an inventory system. Containerization is a strategic choice for the Production, Order, and Inventory Systems, each with distinct functional and operational requirements. Each service, encapsulated in its container, operates in an isolated environment, reducing conflicts between different services and enhancing security. The containers can then be managed in a cluster, providing a higher level of abstraction over the individual containers and orchestrating their deployment, scaling, and operations across multiple host machines. By leveraging container orchestration tools like Docker Swarm, each system can be scaled independently in response to demand and updated without downtime.
+
+\subsection*{Production System}
+
+\textbf{Language:} C++ is selected for its performance and efficiency, crucial in managing scheduling, packaging, and fault management in the production system. Its balance of low-level memory management and safer features compared to C make it suitable for a high-performance environment. While C++ enhances safety in memory management, it can still be complex for new developers which makes it a trade-off. Also, its complexity in managing large codebases may require experienced developers for maintenance and development.
+
+\textbf{Database:} A cluster of MongoDB instances is suitable for handling the high throughput of log and event data generated by the production system. Its scalability and performance in handling large volumes of data make it a robust choice. While MongoDB handles throughput efficiently, the complexity of managing a cluster and ensuring data integrity across instances can be challenging.
+
+\textbf{Message bus:} A high-performance message bus like ZeroMQ or RabbitMQ. These can efficiently handle the high throughput and complex data structures typical in a production environment. C++ offers good support for both these message buses. ZeroMQ is known for its high-speed and low-latency messaging, ideal for C++'s performance-oriented environment. RabbitMQ, while slightly higher in latency, offers more robust message routing and management features.
+
+\subsection*{Order System}
+
+\textbf{Language:} The .NET framework, particularly C\#, is chosen for its robustness in handling numerous requests and its comprehensive features for asynchronous programming. This makes it ideal for the order system, which requires efficient handling of customer interactions and messaging. .NET's reliance on the Microsoft ecosystem can be a limitation, particularly regarding cross-platform compatibility. However, its open-source nature and extensive tools for deployment and scalability offer significant advantages.
+
+\textbf{Database:} Redis is selected for the Order System due to its high-speed data access and processing, ideal for handling rapid transactions and real-time responses. As an in-memory data store, Redis excels in managing intensive read/write operations. The main trade-off involves higher memory requirements and the need for effective data persistence strategies. However, in the context of the Order System, where speed is crucial, Redis's advantages in performance and scalability make it a highly suitable choice.
+
+\textbf{Message bus:} Apache Kafka or Azure Service Bus. Kafka excels in handling high-throughput data streams and is compatible with Java and .NET, while Azure Service Bus integrates seamlessly with .NET and offers extensive features for cloud-based messaging. Kafka's distributed architecture aligns well with the scalable nature of Java and the .NET framework. For environments heavily invested in the Microsoft ecosystem, Azure Service Bus provides tight integration, simplifying deployment and management.
 
 
- 
+\subsection*{Inventory System}
+
+\textbf{Language:} Java is selected for its strong object-oriented capabilities, cross-platform compatibility, and extensive use in enterprise environments. Java’s mature ecosystem and widespread adoption make it a reliable choice for the inventory management system, which requires robustness and scalability. Java can have higher memory and processing requirements compared to other languages. Additionally, its verbose syntax might lead to longer development times. However, Java's platform independence and extensive libraries and frameworks offset these drawbacks.
+
+\textbf{Database:} MongoDB, a NoSQL database, is chosen for its high availability and flexibility in handling semi-structured data. Its ability to remain operational during network partitions aligns well with the order system's need for constant availability, even at the cost of temporary data staleness. The eventual consistency model of MongoDB is a trade-off between not always serving the most up-to-date data, but this is acceptable given the system's priority on availability.
+
+\textbf{Message bus:} The same design choice as Order System.
 
 
+Architectural tactics and patterns regarding deployability, interoperability, and availability that are relevant to the system have been identified. These can be found in Appendix \ref{sec:appTactics}. The some of the tactics and patterns are implemented via the given technology:
+\subsection*{Interoperability Tactics and Patterns}
+MongoDB uses service discovery protocols which can be used by applications to find the database service in a network.
+Redis offers a simple protocol and API which clients can implement to communicate with the Redis server.
+Kafka provides a well-defined API for producing and consuming messages.
+
+The various drivers provided by MongoDB for different programming languages act as adapters, allowing those languages to interact with MongoDB.
+
+\subsection*{Deployability Tactics and Patterns}
+Redis allows certain features to be enabled or disabled at runtime, which is useful for controlling the deployment's behavior.
+Java applications can be deployed using scripts which are part of the build tools like Maven or Gradle.
+Kafka can be set up in a way that manages how services interact with the message streams.
+
+.NET promotes modular programming through its assembly structure and namespaces.
+With the advent of .NET Core and ASP.NET Core, building microservices has become more streamlined, supported by lightweight, cross-platform runtime.
+The Java platform uses a modular system to organize code into separate, independent modules.
+Java frameworks like Spring Boot make it easy to develop and deploy microservices.
+Kafka can be used to enable event-driven architecture, allowing systems to react to streams of events in real-time.
+
+\subsection*{Availability Tactics and Patterns}
+Replication in MongoDB provides redundant copies of data to ensure high availability and it supports rolling back to previous states in the event of an error during replication.
+Redis can degrade functionality gracefully under certain failure modes, such as when running out of memory.
+.NET framework has extensive support for exception handling to recover from faults.
+Java has a robust exception handling framework to manage errors.
+Kafka provides message replication across different brokers to ensure that messages are not lost if a broker fails.
+Docker Swarm provides monitoring capabilities to track the state and health of the swarm, services, and individual containers.
+Swarm mode enables the running of multiple instances of a container (replicas), thereby providing redundancy.
+Docker services can be rolled back to a previous version if an update fails or is not desirable.
+Container orchestration can detect when containers fail and automatically restart them.
+Swarm services can be dynamically reconfigured with updated configurations or images without downtime.
+
+MongoDB can be configured in a master-slave setup where the master handles writes and the slaves replicate the master's data and can handle read queries.
+Kafka operates using a broker pattern, where Kafka brokers manage the storage and transmission of messages to consumers.
 
 \section{Evaluation}
 \label{sec:evaluation}
-This Section describes the evaluation of the proposed design.
-Section \ref{sec:design} introduces the design of the experiment to evaluate the system. 
-Section \ref{sec:measurements} identifies the measurements in the system for the experiment.
-Section \ref{sec:pilot_test} describes the pilot test used to compute the number of replication in the actual evaluation. 
-Section \ref{sec:analysis} presents the analysis of the results from the experiment. 
+
 
  
 \subsection{Experiment design}
 \label{sec:design}
+\subsubsection*{Pilot Testing}
+
+A controlled environment mimicking the real-world production settings will be established. This will include deploying the production, order, and inventory systems on a test network, and replicating the operational conditions of the manufacturing organization. Each QAS (Interoperability, Availability, and Deployability) will be systematically tested. Specific scenarios outlined in the Quality Attribute Scenarios will be simulated to assess the system's response. During each scenario test, relevant data such as response time, system throughput, failure rates, and recovery times will be collected. This data will be crucial for evaluating the system's performance against the expected outcomes.
+
+\subsubsection*{Measurement of QAS}
+
+\textbf{Interoperability:} The integration of a new sensor (as described in the QAS) and the system's ability to adapt and communicate with it will be assessed. Metrics like integration time and system stability post-integration will be measured.
+
+\textbf{Availability:} The response of the system to a critical failure in a production component will be evaluated. Key performance indicators include the time taken to switch to a backup operation, and the time to initiate repair or replacement.
+
+\textbf{Deployability:} The system's adaptability to a new production line will be tested. Measures will include the time taken for complete deployment, operational readiness, and the effectiveness of the system in integrating new components.
+
 
 
 \subsection{Measurements}
 \label{sec:measurements}
+\subsubsection*{Interoperability Measurement Results}
+The process of integrating a new simulated sensor (as a new container) into the system took 2 minutes. This time includes the container deployment, network configuration, and synchronization with the existing system. The container was then able to communicate with the other containers.
+The system showed a minor CPU usage increase by 5\% and memory usage by 7\% immediately after integration, which normalized within 2 minutes. No significant disruptions were observed in the system's ongoing operations.
+
+\subsubsection*{Availability Measurement Results}
+Following the intentional stopping of a critical container to simulate a failure, the system automatically redirected operations to a backup container in about 1 minute. The stopped container was also able to automatically restart and reintegrate it into the system workflow.
+
+\subsubsection*{Deployability Measurement Results}
+Deploying a new container to simulate a new production line component was completed in approximately 10 minutes, including networking and integration with the existing system.
+The integration of a new component was smooth, with no conflicts or issues arising in the system's existing operations. The new container functioned as expected, demonstrating the system's effective handling of additional components.
 
 
 \subsection{Pilot test}
 \label{sec:pilot_test}
+For the pilot test, the production, order, and inventory systems are deployed within a Docker Swarm environment. Docker Swarm is chosen for its ability to manage containerized applications across multiple host nodes, providing a practical simulation of a production environment. The docker-compose deployment file is used to define and run multi-container Docker applications, ensuring consistent deployment and configuration of the system components.
+
 
 \subsection{Analysis}
 \label{sec:analysis}
+The pilot test results provide insights into the design and functionality of the proposed production software system. These insights are critical for addressing the research questions (RQs) posed earlier.
+
+\subsubsection*{Addressing Research Question 1 (RQ1)}
+
+"How can different architectures support the stated production system requirements?"
+The fast integration time (2 minutes) for a new simulated sensor and minimal impact on system stability post-integration demonstrates the effectiveness of the chosen architecture in supporting interoperability requirements. This indicates that the use of containerized microservices and a well-designed network configuration enables the system to adapt quickly to new components. This architecture supports the dynamic integration of diverse technologies, a key requirement for the production system.
+
+The time for complete deployment of a new production line component (10 minutes) and the smooth integration process highlight the system's deployability. This is indicative of a well-structured deployment pipeline and efficient containerization strategy, allowing for rapid scalability and adaptability to new production demands.
+
+The results suggest that a microservices architecture, with containerized components and a robust deployment pipeline, effectively supports the production system requirements. This approach allows for scalability, rapid integration, and deployment of new components while maintaining system stability and efficiency.
+
+\subsubsection*{Addressing Research Question 2 (RQ2)}
+
+"Which architectural trade-offs must be taken due to the technology choices?"
+The swift response to a critical failure (1-minute switch to backup operation) and the system's ability to self-recover demonstrate high availability. However, this comes at the cost of increased system complexity. The need to maintain backup components and ensure seamless failover requires sophisticated orchestration and monitoring, which can add to the overall complexity of the system.
+
+While the system shows excellent performance in terms of integration and deployment times, this performance is contingent on maintaining a balance between system flexibility and complexity. The use of containerization and microservices offers flexibility but requires careful management to avoid performance bottlenecks and ensure security.
+
+The architecture allows for scalability, as evidenced by the deployability results. However, this scalability comes with increased resource utilization, particularly in terms of CPU and memory during integration and deployment activities. Optimizing resource utilization without compromising scalability remains a key trade-off.
+
 
 
 \section{Future work}
+The pilot test focused on the software aspect in a local Docker Swarm environment, providing insights into system behavior under simulated conditions. To more accurately measure the system's performance, future evaluations should include a setup that replicates real-life scenarios. This involves integrating the physical aspects of the production environment, such as actual sensors and production line components, to assess the system's response to real-world stimuli. Such an approach would provide a deeper understanding of how the system interacts with physical components and adapts to real-world production challenges.
+
+The Quality Attribute Scenarios (QASes) addressed in the pilot test primarily measured software interactions and responses. Future evaluations should encompass both software and physical aspects of the system. By incorporating real sensors and production line components into the test environment, the system's full capabilities can be assessed. This will ensure that the measurements of QASes like interoperability, availability, and deployability fully encompass the system's physical and software components.
+
+In the future, the system could need a new message bus for a use case like continuous production monitoring, ZeroMQ can swiftly transmit sensor data to the management software for analysis. In the case of exchanging production information, ZeroMQ enables real-time updates across different system components.
 
 
 \section{Conclusion}
+This project explored the design and implementation of a production software system tailored for a medium-sized manufacturing organization in the farming equipment sector. Central to this was the creation of an architecture that not only met the demanding production requirements of continuous operation and high throughput but also accommodated a span of technologies across various programming languages, databases, and architectural styles.
+
+Through an extensive literature review, use case analysis, and quality attribute scenario development, the study identified key system requirements and potential challenges. The chosen architecture, leveraging containerization and a microservices approach, demonstrated strong interoperability, availability, and deployability in a controlled Docker Swarm environment. This approach facilitated the smooth integration of new components, rapid adaptation to simulated failures, and efficient scalability in response to evolving production needs.
+
+While the pilot test primarily focused on the software aspects, yielding promising results, it also highlighted the need for further research incorporating physical components and real-world scenarios. The findings from this study contribute to knowledge in Industry 4.0 architectures, offering insights into balancing the complexities of modern production systems with the need for flexibility, robustness, and scalability. The path forward includes expanding the system's capabilities to fully integrate physical and environmental factors, aligning closely with real-world industrial applications.
 
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
+
+\newpage
+\input{GroupTemplate/Appendix}
+
 \vspace{12pt}
 \end{document}

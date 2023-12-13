@@ -21,8 +21,8 @@ on:
   # Environment Variables
 env:
   DOCKER_IMAGE_NAME: lowercase-image-name
-  PROJECT_NAME: ProjectName
-  GROUP_NUMBER: GroupNumber #I.e  Group02 
+  PROJECT_NAME: AdoptingMicroservicesAndDevOpsInTheCyber‐physicalSystemsDomain
+  GROUP_NUMBER: 10 #I.e  Group02 
 
 jobs:
   # Create artifact of repository source code to use for consistensy accross all jobs

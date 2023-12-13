@@ -1,67 +1,64 @@
-version: '3.4'
+version: '3.8'
 
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:7.3.0
-    container_name: zookeeper
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
 
   broker:
     image: confluentinc/cp-kafka:7.3.0
-    container_name: broker
     ports:
       - "9092:9092"
-    depends_on:
-      - zookeeper
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-    healthcheck:
-      test: [ "CMD", "nc", "-vz", "localhost", "9092" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
 
   order-service:
-    build:
-      context: .
-      dockerfile: OrderService/OrderService/Dockerfile
+    image: prettyface/orderservice:latest
     ports:
       - "5003:80"
-    depends_on:
-      "broker":
-        condition: service_healthy
-      "orderstore":
-        condition: service_healthy
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
   inventory-service:
-    build:
-      context: .
-      dockerfile: InventorySystem/Dockerfile
+    image: prettyface/inventoryservice:latest
     ports:
       - "5002:8080"
-    depends_on:
-      "broker":
-        condition: service_healthy
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
   
   orderstore:
     image: redis:6.2-alpine
-    restart: always
     ports:
       - '6379:6379'
-    healthcheck:
-      test: [ "CMD", "nc", "-vz", "localhost", "6379" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
 
   mongo:
-      ports:
-          - '27017:27017'
-      restart: always
-      image: mongo
-      volumes:
+    image: mongo
+    ports:
+      - '27017:27017'
+    volumes:
       - ./mongo-data:/data/db
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure

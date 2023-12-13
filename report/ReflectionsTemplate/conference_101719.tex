@@ -64,18 +64,21 @@
 %}
 
       
-\title{Reflection Report Template\\
+\title{Reflection Report \\
 }
 
 \author{
     \IEEEauthorblockN{
-        Student 1
+        Gorm Krings\IEEEauthorrefmark{1},
+        Mikkel Plagborg Andersen\IEEEauthorrefmark{1},
+        Frederik Primdahl Tønnes\IEEEauthorrefmark{1}
     }
     \IEEEauthorblockA{
-        University of Southern Denmark, SDU Software Engineering, Odense, Denmark \\
-        Email: student1@mmmi.sdu.dk
+    \IEEEauthorrefmark{1}University of Southern Denmark, SDU Software Engineering, Odense, Denmark \\
+        Email: \IEEEauthorrefmark{1} \textnormal{\{gokri20, mikke20, frtoe20\}}@student.sdu.dk
     }
 }
+
 
 
 %%%%
@@ -113,19 +116,72 @@
 
 \section{Contribution}
 
-  
+We started as 5 members, but we were reduced to 3. As we were a small group, most of the work was done together.
+For the report, each section was assigned to a member who was responsible for writing it clean, and the others would contribute and approve the section.
+
+\subsection{Introduction and Motivation}
+Mikkel focused on the introduction, ensuring that our objectives were clearly stated and aligned with the broader context of Industry 4.0. 
+
+
+\subsection{Problem and Approach}
+
+Mikkel led the "Problem, Research Questions, and Approach" section. In collaboration with the rest of the team, the problem to be resolved was described, and Production and Software requirements were formulated. 
+
+\subsection{Related Work}
+
+A literature review was conducted. We identified a search string based on the research questions. We then searched in SDU Bibliotek and found 8 papers. We divided them among all 3 of us to read through and extract useful data.
+Frederik was responsible for the section, summarizing the synthesized data from the literature review.
+
+\subsection{Use Case}
+Frederik was responsible for the "Use Case and Quality Attribute Scenarios" sections. The team developed a series of use cases outlining the essential requirements of the system. 
+\subsection{Quality Attribute Scenarios}
+The team, in collaboration, also crafted quality attribute scenarios, focusing on interoperability, availability, and deployability, to ensure these scenarios were clear, relevant, and aligned with our project goals.
+\subsection{The Solution}
+Gorm was assigned as responsible for the solution section.
+
+\subsection{Evaluation}
+Mikkel was responsible for the Evaluation section, highlighting the results of the solution and analyzing how they answered the research questions.
+
+\subsection{Future Work}
+Gorm is responsible for the Future Work section, focusing on integrating software and physical components in real-world scenarios.
+
+\subsection{Conclusion}
+Gorm was responsible for writing this section which summarizes and concludes the paper.
 
 \section{Discussion}
+The chosen microservices architecture, as supported by literature such as \cite{AdoptingMicroservicesDevOps}, inherently offers robustness due to its decentralized nature and flexibility in integrating diverse technologies. The successful integration of a new sensor type in the pilot test, within a short span and without disrupting ongoing operations, is a testament to this flexibility. However, it's important to acknowledge that microservices also introduce complexity, which could potentially compromise robustness if not managed effectively.
 
+The scalability of the system was demonstrated in the pilot test, where the deployment of a new production line component was achieved efficiently. This aligns with findings from \cite{UseOfLightweightVirtualization}, which emphasizes the scalability benefits of containerized environments. However, scalability in a real-world setting may face challenges not encountered in a controlled test environment, particularly when integrating physical components.
 
+Continuous operation and high throughput, critical for manufacturing systems as outlined in \cite{IoT-fog-based-healthcare}, were partially demonstrated. The system's ability to quickly switch to a backup operation in case of failure indicates a design advantageous to continuous operation. Yet, the real test of throughput efficiency can only be ascertained in a fully operational manufacturing setting.
+
+While the software aspects of the system performed well in testing, the integration of physical components remains a significant challenge. As highlighted in \cite{UnifiedArchitecturePowering}, the real-world effectiveness of an Industry 4.0 system is heavily dependent on its ability to integrate and coordinate between software and hardware components seamlessly. The lack of real-world testing with physical components is a limitation of the current study.
+
+The complexity inherent in a microservices-based system, as discussed in \cite{DevOpsForCPS}, can be a double-edged sword. While it allows for flexibility and scalability, it also requires sophisticated management and monitoring to maintain system integrity. This complexity could potentially hinder the system's robustness if not adequately addressed in a real-world implementation.
 
 \section{Reflection}
 
-Reflection
+One of the core objectives was to create a system that could integrate a range of technologies, a common requirement in the dynamic field of Industry 4.0. To a significant extent, this goal was achieved. The use of a microservices architecture facilitated the integration of different programming languages, databases, and tools, echoing the adaptability discussed in relevant literature. However, it's important to note that the integration was primarily software-centric, and the full spectrum of integrating physical components in a real-world setting remains a challenge yet to be tackled.
 
+A significant challenge encountered was the complexity involved in implementing all the identified architectural tactics and patterns. Given the limited resources of a three-person team, it was impractical to fully implement and test each aspect. This limitation led to a focus on core components of the architecture, leaving some of the more intricate patterns and tactics unexplored.
+
+While the system performed well in a simulated environment, its performance in a real-world setting remains speculative. The absence of real-world testing, particularly involving physical components of a manufacturing setup, leaves a gap in the project's ability to comprehensively solve the stated problem.
+
+Working within the constraints of a small team and limited time frame posed significant challenges. These constraints impacted the depth to which certain aspects of the system could be developed and tested, leading to a prioritization of some objectives over others.
+
+The project was a great learning experience in terms of navigating the complexities of Industry 4.0 architectures. It necessitated a constant adaptation of strategies to align with emerging understanding and constraints.
 
 \section{Conclusion}
 
+In retrospect, this project designed a production software system tailored for the farming equipment manufacturing industry within the context of Industry 4.0. Throughout this endeavor, we successfully addressed key aspects of integrating diverse technologies and demonstrating the scalability and flexibility of a microservices architecture in a simulated environment. Our work gives insights into the design of complex systems in an evolving technological landscape.
+
+However, the project also highlighted the challenges inherent in such undertakings, particularly when constrained by resources and the scope of practical application. The complexities involved in implementing a full suite of architectural tactics and patterns, especially within a small team, were a significant hurdle. This limitation led to a prioritization of certain project goals, leaving some areas underexplored. Additionally, the absence of real-world testing, especially with physical components, leaves a gap in our understanding of the system's performance in an actual manufacturing setting.
+
+Future efforts should focus on implementing and testing the system in a real-world environment. This would provide invaluable insights into how the system interacts with physical components and adapts to the nuances of an actual manufacturing process.
+
+A broader implementation of the identified architectural tactics and patterns is essential. Future teams, ideally with more resources, could delve deeper into these aspects, enriching the system's robustness and adaptability.
+
+In summary, while the project achieved notable milestones in designing a production software system for Industry 4.0, it also underscored the complexities and challenges of such an endeavor. Future work in this domain, informed by our experiences and findings, is primed to further advance our understanding and capabilities in designing efficient production systems.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}

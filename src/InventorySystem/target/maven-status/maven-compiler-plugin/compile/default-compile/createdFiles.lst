@@ -1,0 +1,16 @@
+sdu\asa\inventorysystem\mapper\ItemMapper.class
+sdu\asa\inventorysystem\models\Item.class
+sdu\asa\inventorysystem\config\KafkaConsumerConfig.class
+sdu\asa\inventorysystem\models\Part$PartBuilder.class
+sdu\asa\inventorysystem\repository\InventoryRepository.class
+sdu\asa\inventorysystem\config\KafkaTopicConfig.class
+sdu\asa\inventorysystem\dto\ItemDto.class
+sdu\asa\inventorysystem\KafkaListeners.class
+sdu\asa\inventorysystem\config\KafkaProducerConfig.class
+sdu\asa\inventorysystem\models\Order$OrderBuilder.class
+sdu\asa\inventorysystem\models\Order.class
+sdu\asa\inventorysystem\InventorySystemApplication.class
+sdu\asa\inventorysystem\models\Item$ItemBuilder.class
+sdu\asa\inventorysystem\models\Part.class
+sdu\asa\inventorysystem\controller\InventoryController.class
+sdu\asa\inventorysystem\MessageController.class

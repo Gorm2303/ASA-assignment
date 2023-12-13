@@ -35,7 +35,7 @@ services:
         condition: on-failure
 
   inventory-service:
-    image: prettyface/inventoryservice:latest
+    image: gorm2303/inventoryservice:latest
     ports:
       - "5002:8080"
     deploy:
@@ -55,7 +55,7 @@ services:
   mongo:
     image: mongo
     ports:
-      - '27017:27017'
+      - '27018:27017'
     volumes:
       - ./mongo-data:/data/db
     deploy:
